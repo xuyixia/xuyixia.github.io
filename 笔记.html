@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>笔记</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+      <style> 
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+ 
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview   ">
+      <ul>
+<li><a href="#%E7%96%91%E9%97%AE%E5%8F%A5%E4%BD%9C%E8%BF%9E%E8%AF%8D%E5%BC%95%E5%AF%BC%E7%9A%84%E5%90%8D%E8%AF%8D%E6%80%A7%E4%BB%8E%E5%8F%A5">疑问句作连词引导的名词性从句</a></li>
+<li><a href="#%E7%B1%BB%E4%BC%BC%E7%96%91%E9%97%AE%E8%AF%8D%E7%9A%84%E8%BF%9E%E8%AF%8Dwhether">类似疑问词的连词whether</a></li>
+<li><a href="#%E4%BB%8E%E5%8F%A5%E4%B8%8E%E4%B8%BB%E5%8F%A5%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7">从句与主句的优先级</a></li>
+<li><a href="#%E8%BF%9E%E6%8E%A5%E8%AF%8Dthat%E7%9C%81%E7%95%A5">连接词that省略：</a></li>
+</ul>
+<h3>典型的名词从句的特点：</h3>
+<ol>
+<li>它是一个完整、独立的简单句；</li>
+<li>由连接词that引导，that没有意义，只有语法功能，表示后面跟着的是名词性从句；</li>
+<li>它必须放在主句中的名词位置（主语、宾语、补语、同位语）;</li>
+</ol>
+<h3>按位置分析名词性从句：</h3>
+<p>一、 作主语</p>
+<p>如果主语过长，可用虚词it作先行词代替；</p>
+<p>二、 作宾语</p>
+<p>that只有语法功能没有实际意义，这是它有时能省略的原因；</p>
+<p>及物动词的宾语是名词性从句时，that可以被省略；</p>
+<p>包含宾语的基本句型有三种：</p>
+<ol>
+<li>S+V+O</li>
+<li>S+V+O+O</li>
+<li>S+V+O+C<br>
+在3中，如果宾语位置的从句过长，可以用虚词it先行。</li>
+</ol>
+<p>三、 作补语<br>
+补语有两种情况：</p>
+<ol>
+<li>主补 S +V + <mark>C</mark></li>
+<li>宾补 S+ V + O + <mark>C</mark></li>
+</ol>
+<p>书中只讨论了主补的情况 ，主补的连词that也可省略，与宾语位置的名词性从句省略that的原因相同。</p>
+<p>四、 作同位语<br>
+句子的基本成分只有“主谓宾定状补”，书中给予同位语的定义是：形容词从句简化后留下的补语。</p>
+<blockquote>
+<p>个人补充内容：<br>
+同位语的表现形式有两种，对应形容词从句的两种情况（限定从句和非限定从句）</p>
+<ol>
+<li>紧挨着相关名词</li>
+<li>与相关名词之间有逗号相隔（逗号起补充括号的作用）</li>
+</ol>
+</blockquote>
+<p>同位语位置的名词性从句一般情况下紧挨着相关名词，但有时候会有例外：</p>
+<ol>
+<li>
+<p>形容词后的同位语位置<br>
+例如： I am afraid <mark>that I can't help you.</mark><br>
+可以理解为afraid of that thing省略了介词短语导致。<br>
+理由如下：</p>
+<ol>
+<li>that thing 没有意义;</li>
+<li>that thing 与同位语位置上的从句重复；</li>
+<li>of that thing 是可有可无的介词短语;</li>
+</ol>
+<p>虽然原句没有名词，但是依然应该把他当成同位语位置的名词性从句。<br>
+此句中的that也可以省略。</p>
+</li>
+<li>
+<p>名词与同位语不一致<br>
+例如：You'd better take care <mark>that nothing goes wrong.</mark><br>
+虽然care是名词，但是care和从句并不相关。跟上面的情况类似，这里的care可以看成 care of that thing的缩略，而从句是和that thing 相关联的。<br>
+同样的，此句中的that也可以省略。</p>
+</li>
+</ol>
+<h3 class="mume-header" id="%E7%96%91%E9%97%AE%E5%8F%A5%E4%BD%9C%E8%BF%9E%E8%AF%8D%E5%BC%95%E5%AF%BC%E7%9A%84%E5%90%8D%E8%AF%8D%E6%80%A7%E4%BB%8E%E5%8F%A5">疑问句作连词引导的名词性从句</h3>
+
+<p>在这节之前，名词性从句都是由连词that引导，这类从句可以视为典型的名词性从句。</p>
+<p>除此之外，疑问词也可引导名词性从句。</p>
+<p>疑问词引导的名词性从句在外形上和普通的疑问句（一般疑问句该怎么改成从句？）类似，只是从句是非疑问句的顺序，例如 &quot;who you are&quot;。</p>
+<blockquote>
+<p>疑问句分为几种，包含疑问词的疑问句是特殊疑问句，那么不包含疑问词的一般疑问句该如何作为代替一个问题的从句？</p>
+</blockquote>
+<p>疑问词既是从句的一部分，又起连词的作用。</p>
+<blockquote>
+<p>考虑一个问题，为什么疑问句只能作为名词性从句，而不能成为其它从句？疑问词引导的名词性从句代表一个问题，很明显任何问题都是名词。</p>
+</blockquote>
+<h3 class="mume-header" id="%E7%B1%BB%E4%BC%BC%E7%96%91%E9%97%AE%E8%AF%8D%E7%9A%84%E8%BF%9E%E8%AF%8Dwhether">类似疑问词的连词whether</h3>
+
+<p>whether是一个具有疑问词外貌的连词，同时它也是一个引导代表一个问题的名词性从句的连词。类似的外貌和代表问题的功能使它具有欺骗性并常常被误认为是疑问词。<br>
+事实上whether不能作为疑问词单独引导一个<mark>带问号的疑问句</mark>（这里指真正的疑问句），但是它可以作为连词引导代表<mark>一个问题</mark>的名词从句（这里没指明是疑问句）。</p>
+<p>在理解上，whether可以看作是“which + either...or...”组合而成。</p>
+<p>either...or...是并列连词，它主要是将一个问题（例如一般疑问句）的两个不同答案并列到一个句中。看到这里，似乎已经回答了上一部分的疑问(一般疑问句如何改成代表一个问题的名词性从句？)。</p>
+<blockquote>
+<p>疑问句有一般疑问句，特殊疑问句，还有选择疑问句之分。对于只有两个选择结果的一般疑问句可以使用either，但是对于多个选项的选择疑问句，它该如何改成代表一个问题的名词性从句呢？<br>
+我有个猜测，whether后的选项并不限定数量，即可二选一，也可以多选一，例如<br>
+I want to konw whether he like Lily、Angelbaby or me?<br>
+不知道这个例句是否有问题。</p>
+</blockquote>
+<p>大多数情况下，whether引导的，代表一个问题的名词性从句，也可以由表“是否”的if引导（原来连词if也可用于引导名词性从句）。</p>
+<p>但是在下述两个情况下，if不能和whether互换使用：</p>
+<ol>
+<li>句首位置<br>
+原因是互换后，if后的从句容易被误认为是状语从句</li>
+<li>介词的宾语位置<br>
+介词后面<mark>必须</mark>使用<mark>类名词</mark>（指名词、名词短语、代词），而if不具备名词功能，相反whether由于可被理解为“which + either...or...”，其中的which是代词，所以此时的whether不能和if互换。</li>
+</ol>
+<h3 class="mume-header" id="%E4%BB%8E%E5%8F%A5%E4%B8%8E%E4%B8%BB%E5%8F%A5%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7">从句与主句的优先级</h3>
+
+<p>名词性从句和另外两种从句有个不同的地方。名词性从句能做句子的主要成分，而其他两个则不能。</p>
+<p>因此，在名词性从句里，会出现一个独有的现象：读句的优先级对调。（书中介绍为“名词从句的放大”）</p>
+<p>读句的优先级指的是，对一个复杂句（复合句），按照正常的逻辑应该先读完主句的内容，再读从句的内容，因为主句的内容比较重要。我们可以说，主句的读句优先级高于从句。</p>
+<p>这在状语从句和定语从句里是没问题，但在名词性从句里就有问题了。同样是主句主要成分的</p>
+<h3 class="mume-header" id="%E8%BF%9E%E6%8E%A5%E8%AF%8Dthat%E7%9C%81%E7%95%A5">连接词that省略：</h3>
+
+<ol>
+<li>作主语的名词性从句的连词that不能省略；</li>
+<li>作及物动词宾语的名词性从句的连词that可以省略；</li>
+</ol>
+<p>原因：</p>
+<ol>
+<li>that没有意义，只有语法功能；</li>
+<li>宾语位置是明显的从属位置，主语位置则不然；</li>
+<li>是否能省略的标准是省略后能不能维持意思的清楚；</li>
+</ol>
+
+      </div>
+      
+      
+    </body>
+    
+    
+    
+    
+    
+    
+    
+  </html>
