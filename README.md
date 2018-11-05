@@ -1,27 +1,15 @@
-# Initial page
+大的学习方向：  
+[ ]英语
+[ ]计算机网络
+[ ]数据结构
+[ ]计算机基础
+[ ]C语言
 
-1. Test markdown for toc.
+小的知识点：  
+[ ] exe4j
 
-\[toc\]
+每日安排：  
 
-## 1
-
-### 2
-
-#### 3
-
-\#\#\#\#\# 4
-
-{% code-tabs %}
-{% code-tabs-item title="test.java" %}
-```java
-public static void main(){
-    1111
-
-}
-```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
-
-\#\#\#\#\#\# 6
-
+2018.11.5 
+[ ]完成firephoenix-present模块
+[ ]英语捡起来，准备工作
