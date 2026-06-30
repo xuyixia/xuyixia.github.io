@@ -29,7 +29,9 @@ jobs:
         run: npm install
 
       - name: Generate Static Files
-        run: npm run generate
+        run:  
+          npm install hexo-cli -g
+          hexo generate
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
