@@ -1,0 +1,41 @@
+name: Deploy Hexo Blog
+
+on:
+  push:
+    branches:
+      - main  # 根据您的源码分支名称修改
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # 指定 Node.js 版本
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Generate Static Files
+        run: npm run generate
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.HEXO_TOKEN }}
+          external_repository: xuyixia/xuyixia.github.io # 替换为您的 Pages 仓库
+          publish_dir: ./public
+          publish_branch: gh-pages # 存放静态文件的分支
+          commit_message: ${{ github.event.head_commit.message }}
