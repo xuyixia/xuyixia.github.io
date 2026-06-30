@@ -1,0 +1,19 @@
+menu:
+  首页: /
+  归档: /archives
+  关于: /about
+
+# 文章显示
+excerpt: true
+excerpt_length: 200
+
+# 侧边栏
+widgets:
+  - recent_posts
+  - category
+  - tagcloud
+
+# 社交链接
+social:
+  GitHub: https://github.com
+  Twitter: https://twitter.com

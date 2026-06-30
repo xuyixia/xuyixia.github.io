@@ -1,0 +1,47 @@
+<% if (theme.widgets) { %>
+  <% theme.widgets.forEach(function(widget) { %>
+    <div class="widget">
+      <% if (widget === 'recent_posts') { %>
+        <h3 class="widget-title">最新文章</h3>
+        <ul class="widget-list">
+          <% site.posts.sort('date', -1).limit(5).forEach(function(post) { %>
+            <li>
+              <a href="<%- url_for(post.path) %>"><%= post.title %></a>
+              <span class="post-date"><%= date(post.date, 'MM-DD') %></span>
+            </li>
+          <% }); %>
+        </ul>
+      <% } else if (widget === 'category') { %>
+        <h3 class="widget-title">分类</h3>
+        <ul class="widget-list">
+          <% site.categories.forEach(function(category) { %>
+            <li>
+              <a href="<%- url_for(category.path) %>"><%= category.name %></a>
+              <span class="category-count">(<%= category.posts.length %>)</span>
+            </li>
+          <% }); %>
+        </ul>
+      <% } else if (widget === 'tagcloud') { %>
+        <h3 class="widget-title">标签</h3>
+        <div class="tagcloud">
+          <% site.tags.forEach(function(tag) { %>
+            <a href="<%- url_for(tag.path) %>" class="tag-link"><%= tag.name %></a>
+          <% }); %>
+        </div>
+      <% } %>
+    </div>
+  <% }); %>
+<% } %>
+
+<div class="widget">
+  <h3 class="widget-title">社交链接</h3>
+  <ul class="widget-list social-links">
+    <% if (theme.social) { %>
+      <% for (var name in theme.social) { %>
+        <li>
+          <a href="<%= theme.social[name] %>" target="_blank"><%= name %></a>
+        </li>
+      <% } %>
+    <% } %>
+  </ul>
+</div>

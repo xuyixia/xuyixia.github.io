@@ -1,0 +1,11 @@
+<div class="tag">
+  <h1>标签: <%= page.tag %></h1>
+  <% page.posts.forEach(function(post) { %>
+    <article class="post">
+      <h2><a href="<%- url_for(post.path) %>"><%= post.title %></a></h2>
+      <div class="post-meta">
+        <time><%= date(post.date, 'YYYY-MM-DD') %></time>
+      </div>
+    </article>
+  <% }); %>
+</div>

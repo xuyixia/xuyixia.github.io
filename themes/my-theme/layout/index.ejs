@@ -1,0 +1,28 @@
+<div class="post-list">
+  <% page.posts.forEach(function(post) { %>
+    <article class="post">
+      <h2><a href="<%- url_for(post.path) %>"><%= post.title %></a></h2>
+      <div class="post-meta">
+        <time><%= date(post.date, 'YYYY-MM-DD') %></time>
+        <% if (post.categories && post.categories.length) { %>
+          <span class="category">
+            <% post.categories.forEach(function(cat) { %>
+              <a href="<%- url_for(cat.path) %>"><%= cat.name %></a>
+            <% }); %>
+          </span>
+        <% } %>
+      </div>
+      <div class="post-content">
+        <% if (post.excerpt) { %>
+          <%- strip_html(post.excerpt) %>
+          <a href="<%- url_for(post.path) %>">阅读全文</a>
+        <% } else { %>
+          <%- strip_html(post.content).substring(0, theme.excerpt_length) %>...
+          <a href="<%- url_for(post.path) %>">阅读全文</a>
+        <% } %>
+      </div>
+    </article>
+  <% }); %>
+</div>
+
+<%- partial('_partial/pagination') %>
