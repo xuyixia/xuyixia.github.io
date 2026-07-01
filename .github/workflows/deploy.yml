@@ -34,10 +34,10 @@ jobs:
           hexo generate
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3 #该插件是一个非常流行的 GitHub Actions 插件（Action），用于自动化将静态网站或构建产物部署到 GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4 #该插件是一个非常流行的 GitHub Actions 插件（Action），用于自动化将静态网站或构建产物部署到 GitHub Pages
         with:
           personal_token: ${{ secrets.HEXO_TOKEN }}
           external_repository: xuyixia/xuyixia.github.io # 替换为您的 Pages 仓库
           publish_dir: ./public
           publish_branch: gh-pages # 存放静态文件的分支
-          commit_message: ${{ github.event.head_commit.message }}
+          commit_message: "Auto deploy Hexo by GitHub Actions:${{ github.event.head_commit.message }}"
