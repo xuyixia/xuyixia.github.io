@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Source
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4  
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -34,7 +34,7 @@ jobs:
           hexo generate
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v3 #该插件是一个非常流行的 GitHub Actions 插件（Action），用于自动化将静态网站或构建产物部署到 GitHub Pages
         with:
           personal_token: ${{ secrets.HEXO_TOKEN }}
           external_repository: xuyixia/xuyixia.github.io # 替换为您的 Pages 仓库
