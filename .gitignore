@@ -1,0 +1,22 @@
+# Build output
+public/
+
+# MiMoCode
+.mimocode/
+
+# Dependencies
+node_modules/
+
+# Database
+db.json
+
+# Log files
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
