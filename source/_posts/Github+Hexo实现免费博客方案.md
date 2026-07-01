@@ -1,5 +1,5 @@
 ---
-title: Github+Hexo实现免费博客方案   
+title: Github+Hexo实现免费博客方案
 ---
 
 # Github+Hexo实现免费博客方案
