@@ -149,12 +149,95 @@ main {
 
 .post-content pre {
   margin: 1em 0;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
+  overflow-x: auto;
 }
 
 .post-content :not(pre) > code {
   background: rgba(255, 255, 255, 0.1);
   padding: 2px 6px;
   border-radius: 4px;
+  font-size: 0.9em;
+}
+
+/* Highlight.js 代码块样式 */
+.post-content .highlight {
+  margin: 1em 0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.post-content .highlight table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.post-content .highlight td {
+  border: none;
+  padding: 0;
+}
+
+.post-content .highlight .gutter {
+  width: 1%;
+  white-space: nowrap;
+  padding: 12px 0;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.post-content .highlight .gutter pre {
+  margin: 0;
+  padding: 0 12px;
+  color: rgba(255, 255, 255, 0.3);
+  background: none;
+  border-radius: 0;
+}
+
+.post-content .highlight .code {
+  padding: 12px 16px;
+}
+
+.post-content .highlight .code pre {
+  margin: 0;
+  padding: 0;
+  background: none;
+  border-radius: 0;
+  color: #e6e6e6;
+  line-height: 1.6;
+}
+
+.post-content .highlight span {
+  color: inherit;
+}
+
+.post-content .highlight .comment {
+  color: #6a9955;
+}
+
+.post-content .highlight .string {
+  color: #ce9178;
+}
+
+.post-content .highlight .attr {
+  color: #9cdcfe;
+}
+
+.post-content .highlight .bullet {
+  color: #d7ba7d;
+}
+
+.post-content .highlight .keyword {
+  color: #569cd6;
+}
+
+.post-content .highlight .number {
+  color: #b5cea8;
+}
+
+.post-content .highlight .built_in {
+  color: #4ec9b0;
 }
 
 .post-content table {
