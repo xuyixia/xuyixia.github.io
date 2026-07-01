@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Github+Hexo实现免费博客方案</title>
+  <link rel="stylesheet" href="/css/style.css">
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+  <video class="background-video" autoplay loop muted playsinline>
+    <source src="/videos/background.webm" type="video/webm">
+  </video>
+  <header>
+    <nav>
+      <a href="/">matt xu</a>
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/archives">归档</a></li>
+        
+          <li><a href="/about">关于</a></li>
+        
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="content-area">
+      <div class="main-content">
+        <article class="post">
+  <h1>Github+Hexo实现免费博客方案</h1>
+  <div class="post-meta">
+    <time>2026-07-01</time>
+    
+    
+  </div>
+  <div class="post-content">
+    <h1 id="Github-Hexo实现免费博客方案"><a href="#Github-Hexo实现免费博客方案" class="headerlink" title="Github+Hexo实现免费博客方案"></a>Github+Hexo实现免费博客方案</h1><p>博客作为分享内容的平台，已经是很多持续学习者必不可少的工具。但是公网IP和服务器资源存在开销，所以免费的博客方案就应运而生。</p>
+<p>互联网上已经有了很多的成熟方案，经过几番对比，我选择用Github+Hexo的组合实现免费博客方案。因为Hexo基于node.js，还有丰富的主题可供选择，初次之外该工具还支持各种功能扩展，总的来说符合我的个人需求。</p>
+<p>Github提供git仓库，git管理，github action提供CI&#x2F;CD自动化，github page托管静态页面构成的网站；Hexo则提供对markdown文件渲染，以及基本的网站框架。</p>
+<p>以下分为几个部分展开讲，力求对各个模块有个功能上的简单概括，对整个方案的技术体系，以及整个方案的业务流程有个完整的叙述。</p>
+<h2 id="对github和hexo的简单概括"><a href="#对github和hexo的简单概括" class="headerlink" title="对github和hexo的简单概括"></a>对github和hexo的简单概括</h2><h3 id="github"><a href="#github" class="headerlink" title="github"></a>github</h3><p>github原本是版本控制和团队协作的公共仓库平台，在逐步完善配套的辅助功能后，已经成为了多功能的开源内容共享平台。</p>
+<p>在这里，我们重点介绍几个辅助功能。</p>
+<h4 id="github-page"><a href="#github-page" class="headerlink" title="github page"></a>github page</h4><p>github page服务是建立在一个特例化仓库（用户名.github.io）之上的，在对该仓库进行简单的page服务配置后，它就成为静态网站的托管平台。具体的操作可以AI，这里不再赘述。</p>
+<h4 id="github-action"><a href="#github-action" class="headerlink" title="github action"></a>github action</h4><p>github action提供CI&#x2F;CD自动化部署服务，主要涉及到利用git的分支操作，对博客网站的源码和生成的静态网页做一个隔离操作。然后监听push事件触发action拉取源码，github action提供自动化解释和渲染，以及最终的部署。</p>
+<p>实际操作分三个部分，一是git的main分支和gh-pages分支，前者用于我们push博客网站的源码，后者用于action插件构建和部署渲染后的静态网页，命名gh-pages属于接口规范必须实现。二是配置github action的yml文件。三是给github page所在的仓库配置访问token,让github action能利用token访问仓库。</p>
+<p>对main分支和gh-pages分支做一个简单的概括说明。main分支是网站源码所在的分支，所有的修改都push到这个分支上，而gh-pages是github action插件在CI&#x2F;CD过程中创建和维护的分支，该分支提交Hexo项目下public文件夹的内容。</p>
+<p>关于github action的deploy.yml配置文件的实际操作问题。GitHub仓库开启了默认的Pages自动构建，该构建默认适配Jekyll引擎，如果我们用的是hexo引擎，那么就要把仓库配置项“自动构建”改为基于Action的自定义发布流程</p>
+<p>附上一个经过实践检验的配置文件模板deploy.yml</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">Deploy</span> <span class="string">Hexo</span> <span class="string">Blog</span></span><br><span class="line"></span><br><span class="line"><span class="attr">on:</span></span><br><span class="line">  <span class="attr">push:</span></span><br><span class="line">    <span class="attr">branches:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">main</span>  <span class="comment"># 根据您的源码分支名称修改</span></span><br><span class="line"></span><br><span class="line"><span class="attr">jobs:</span></span><br><span class="line">  <span class="attr">build-and-deploy:</span></span><br><span class="line">    <span class="attr">runs-on:</span> <span class="string">ubuntu-latest</span></span><br><span class="line">    <span class="attr">steps:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Checkout</span> <span class="string">Source</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/checkout@v4</span>  </span><br><span class="line"></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Setup</span> <span class="string">Node.js</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/setup-node@v4</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">node-version:</span> <span class="string">&#x27;20&#x27;</span> <span class="comment"># 指定 Node.js 版本</span></span><br><span class="line"></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Cache</span> <span class="string">dependencies</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/cache@v3</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">path:</span> <span class="string">node_modules</span></span><br><span class="line">          <span class="attr">key:</span> <span class="string">$&#123;&#123;</span> <span class="string">runner.os</span> <span class="string">&#125;&#125;-node-$&#123;&#123;</span> <span class="string">hashFiles(&#x27;**/package-lock.json&#x27;)</span> <span class="string">&#125;&#125;</span></span><br><span class="line">          <span class="attr">restore-keys:</span> <span class="string">|</span></span><br><span class="line"><span class="string">            $&#123;&#123; runner.os &#125;&#125;-node-</span></span><br><span class="line"><span class="string"></span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Install</span> <span class="string">Dependencies</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">npm</span> <span class="string">install</span></span><br><span class="line"></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Generate</span> <span class="string">Static</span> <span class="string">Files</span></span><br><span class="line">        <span class="attr">run:</span>  </span><br><span class="line">          <span class="string">npm</span> <span class="string">install</span> <span class="string">hexo-cli</span> <span class="string">-g</span></span><br><span class="line">          <span class="string">hexo</span> <span class="string">generate</span></span><br><span class="line"></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Deploy</span> <span class="string">to</span> <span class="string">GitHub</span> <span class="string">Pages</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">peaceiris/actions-gh-pages@v3</span> <span class="comment">#该插件是一个非常流行的 GitHub Actions 插件（Action），用于自动化将静态网站或构建产物部署到 GitHub Pages</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">personal_token:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.HEXO_TOKEN</span> <span class="string">&#125;&#125;</span></span><br><span class="line">          <span class="attr">external_repository:</span> <span class="string">你的账户名/你的账户名.github.io</span> <span class="comment"># 替换为您的 Pages 仓库</span></span><br><span class="line">          <span class="attr">publish_dir:</span> <span class="string">./public</span></span><br><span class="line">          <span class="attr">publish_branch:</span> <span class="string">gh-pages</span> <span class="comment"># 存放静态文件的分支</span></span><br><span class="line">          <span class="attr">commit_message:</span> <span class="string">$&#123;&#123;</span> <span class="string">github.event.head_commit.message</span> <span class="string">&#125;&#125;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="阶段总结"><a href="#阶段总结" class="headerlink" title="阶段总结"></a>阶段总结</h3><p>以上是大致流程，粗粒度的细节说明，起到提供思路的作用。按照这个思路，搭配AI的补充，基本就能有个正确的实践。为啥不把自己完整的实践过程写下来，因为版本持续在更迭内容可能会过时，以及网上相关的实践讲解内容特别多，太详尽的表述缺乏意义和价值。</p>
+
+  </div>
+</article>
+      </div>
+      <aside class="sidebar">
+        
+  
+    <div class="widget">
+      
+        <h3 class="widget-title">最新文章</h3>
+        <ul class="widget-list">
+          
+            <li>
+              <a href="/2026/07/01/Github+Hexo%E5%AE%9E%E7%8E%B0%E5%85%8D%E8%B4%B9%E5%8D%9A%E5%AE%A2%E6%96%B9%E6%A1%88/">Github+Hexo实现免费博客方案</a>
+              <span class="post-date">07-01</span>
+            </li>
+          
+            <li>
+              <a href="/2026/07/01/hello-world/">Hello World</a>
+              <span class="post-date">07-01</span>
+            </li>
+          
+            <li>
+              <a href="/2026/06/29/page/">page</a>
+              <span class="post-date">06-29</span>
+            </li>
+          
+            <li>
+              <a href="/2026/06/29/test/">page</a>
+              <span class="post-date">06-29</span>
+            </li>
+          
+        </ul>
+      
+    </div>
+  
+    <div class="widget">
+      
+        <h3 class="widget-title">分类</h3>
+        <ul class="widget-list">
+          
+        </ul>
+      
+    </div>
+  
+    <div class="widget">
+      
+        <h3 class="widget-title">标签</h3>
+        <div class="tagcloud">
+          
+        </div>
+      
+    </div>
+  
+
+
+<div class="widget">
+  <h3 class="widget-title">社交链接</h3>
+  <ul class="widget-list social-links">
+    
+      
+        <li>
+          <a href="https://github.com" target="_blank">GitHub</a>
+        </li>
+      
+        <li>
+          <a href="https://twitter.com" target="_blank">Twitter</a>
+        </li>
+      
+    
+  </ul>
+</div>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 matt xu</p>
+  </footer>
+
+  <!-- 音乐播放器 -->
+  <div class="music-player">
+    <div class="player-icon">
+      <svg viewBox="0 0 24 24" class="douyin-icon">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+        <path d="M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/>
+        <circle cx="12" cy="12" r="2"/>
+      </svg>
+    </div>
+    <div class="player-controls">
+      <div class="music-info">
+        <img class="music-cover" src="" alt="封面" style="display:none;">
+        <div class="music-details">
+          <div class="music-title">加载中...</div>
+          <div class="music-artist">未知艺术家</div>
+        </div>
+      </div>
+      <div class="progress-container">
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
+        </div>
+        <div class="time-info">
+          <span class="current-time">0:00</span>
+          <span class="total-time">0:00</span>
+        </div>
+      </div>
+      <div class="controls-row">
+        <button class="control-btn prev-btn">
+          <svg viewBox="0 0 24 24">
+            <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/>
+          </svg>
+        </button>
+        <button class="play-pause-btn">
+          <svg viewBox="0 0 24 24">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+        </button>
+        <button class="control-btn next-btn">
+          <svg viewBox="0 0 24 24">
+            <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/>
+          </svg>
+        </button>
+      </div>
+      <div class="controls-row" style="margin-top: 10px;">
+        <div class="volume-container">
+          <button class="control-btn volume-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+            </svg>
+          </button>
+          <div class="volume-slider">
+            <div class="volume-fill"></div>
+          </div>
+        </div>
+        <button class="control-btn playlist-btn">
+          <svg viewBox="0 0 24 24">
+            <path d="M15 6H3v2h12V6zm0 4H3v2h12v-2zM3 16h8v-2H3v2zM17 6v8.18c-.31-.11-.65-.18-1-.18-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3V8h3V6h-5z"/>
+          </svg>
+          <div class="playlist-menu"></div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <link rel="stylesheet" href="/css/player.css">
+  <script src="/js/player.js"></script>
+  <script src="/js/script.js"></script>
+</body>
+</html>
